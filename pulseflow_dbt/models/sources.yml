@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: pulseflow
+    database: pulseflow
+    schema: public
+    tables:
+      - name: raw_events
+        description: "Landing zone for all incoming events"
+
+models:
+  - name: stg_events
+    description: "Cleaned and deduplicated events - foundation for all other models"
+  - name: fct_orders
+    description: "Order-level facts with revenue metrics"
+  - name: fct_funnel
+    description: "Hourly conversion funnel metrics"
+  - name: dim_users
+    description: "User-level aggregates and lifetime value"
