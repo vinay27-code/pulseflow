@@ -1,0 +1,68 @@
+name: PulseFlow CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: pulseflow
+          POSTGRES_PASSWORD: pulseflow_secret
+          POSTGRES_DB: pulseflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Initialize database schema
+        run: |
+          PGPASSWORD=pulseflow_secret psql \
+            -h localhost -U pulseflow -d pulseflow \
+            -f docker/init.sql
+        env:
+          DATABASE_URL: postgresql://pulseflow:pulseflow_secret@localhost:5432/pulseflow
+
+      - name: Run tests
+        run: python -m pytest tests/ -v --cov=src --cov-report=xml
+        env:
+          DATABASE_URL: postgresql://pulseflow:pulseflow_secret@localhost:5432/pulseflow
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
+          fail_ci_if_error: false
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install ruff
+      - run: ruff check src/ tests/
