@@ -1,0 +1,29 @@
+[0m17:44:20.225372 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fc6a90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1004bd520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109042370>]}
+
+
+============================== 17:44:20.227290 | 5bab9dff-2d92-4dfc-8364-dbaa3ec85b9b ==============================
+[0m17:44:20.227290 [info ] [MainThread]: Running with dbt=1.7.0
+[0m17:44:20.227496 [debug] [MainThread]: running dbt with arguments {'target_path': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt init pulseflow_dbt', 'warn_error': 'None', 'log_path': 'logs', 'version_check': 'True', 'profiles_dir': '/Users/vinaybabumachha/.dbt', 'static_parser': 'True', 'log_format': 'default', 'debug': 'False', 'indirect_selection': 'eager', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'log_cache_events': 'False', 'no_print': 'None', 'printer_width': '80', 'use_colors': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'partial_parse': 'True', 'write_json': 'True', 'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False'}
+[0m17:44:20.227675 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse dict {'dir': PosixPath('/Users/vinaybabumachha/.dbt')}
+[0m17:44:20.227822 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m17:44:20.228159 [debug] [MainThread]: Starter project path: /Users/vinaybabumachha/Library/Python/3.9/lib/python/site-packages/dbt/include/starter_project
+[0m17:44:20.230952 [info ] [MainThread]: 
+Your new dbt project "pulseflow_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m17:44:20.231097 [info ] [MainThread]: Setting up your profile.
+[0m17:44:53.091819 [info ] [MainThread]: Profile pulseflow_dbt written to /Users/vinaybabumachha/.dbt/profiles.yml using target's sample configuration. Once updated, you'll be able to start developing with dbt.
+[0m17:44:53.106378 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106fc6a90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1004bd520>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10902b6d0>]}
+[0m17:44:53.106738 [debug] [MainThread]: Flushing usage events
